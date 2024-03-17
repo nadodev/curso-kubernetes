@@ -6,7 +6,7 @@ metadata:
     app: "goserver"
 
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: "goserver"
@@ -17,4 +17,20 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: nadojba/hello-go:latest
+          image: nadojba/hello-go:v7
+          envFrom:
+            - configMapRef:
+                name: goserver-config
+
+          volumeMounts:
+            - mountPath:  "/go/myfamily"
+              name: config
+
+      volumes:
+        - name:  config
+          configMap:
+            name: config-teste
+            items:
+              - key: members
+                path: "family.txt"
+                

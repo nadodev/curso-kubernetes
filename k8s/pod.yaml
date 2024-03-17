@@ -5,8 +5,7 @@ metadata:
   name: "goserver"
   labels:
     app: "goserver"
-
 spec: 
   containers:
     - name: goserver
-      image: nadojba/hello-go:latest
+      image: nadojba/hello-go:v4
